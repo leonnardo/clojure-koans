@@ -3,21 +3,39 @@
 
 (defn is-even? [n]
   (if (= n 0)
-    __
-    (___ (is-even? (dec n)))))
+    true
+    (not (is-even? (dec n)))))
 
 (defn is-even-bigint? [n]
   (loop [n   n
          acc true]
     (if (= n 0)
-      __
+      acc
       (recur (dec n) (not acc)))))
 
-(defn recursive-reverse [coll]
-  __)
+(defn recursive-reverse
+  [coll]
+  (loop [coll coll
+         reversed ()]
+    (if (= coll ())
+      reversed
+      (recur (rest coll) (cons (first coll) reversed)))))
+
+; this is just me testing, not a solution for the koan
+(defn rec-reverse
+  [coll]
+  (let [f-elem (first coll)
+        rest-coll (rest coll)]
+    (if (= coll ())
+      ()
+      (concat (rec-reverse rest-coll) (list f-elem)))))
 
 (defn factorial [n]
-  __)
+  (loop [n n
+         acc 1]
+    (if (<= n 1)
+      acc
+      (recur (dec n) (* n acc)))))
 
 (meditations
   "Recursion ends with a base case"
